@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exocortex"
+  short_description: "Work with your chosen private context repository"
+  default_prompt: "Use $exocortex with my explicitly chosen repository and respect my filing preferences."

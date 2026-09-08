@@ -1,0 +1,22 @@
+{
+  "name": "near",
+  "version": "0.8.3",
+  "description": "Work with a user-chosen private Git-backed context repository.",
+  "author": {
+    "name": "PedroAVJ",
+    "url": "https://github.com/PedroAVJ"
+  },
+  "homepage": "https://github.com/PedroAVJ/near",
+  "repository": "https://github.com/PedroAVJ/near",
+  "license": "MIT",
+  "keywords": [
+    "near",
+    "exocortex",
+    "ideas",
+    "canon",
+    "career",
+    "health",
+    "records"
+  ],
+  "skills": "./skills/"
+}

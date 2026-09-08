@@ -1,0 +1,19 @@
+# EAS is always invoked with EAS_NO_VCS=1 and EAS_PROJECT_ROOT=apps. Default
+# closed: only the native release boundary below may enter the upload archive.
+*
+!.easignore
+!EXPO.md
+!app.json
+!eas.json
+!package.json
+!package-lock.json
+!.eas
+!.eas/**
+!ios
+!ios/**
+
+# Generated native artifacts remain excluded inside the allowed ios subtree.
+ios/DerivedData/
+ios/build/
+*.xcarchive
+*.zip

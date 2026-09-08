@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "near-context": {
+      "type": "stdio",
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "root=$CLAUDE_PLUGIN_ROOT; if [ -z \"$root\" ]; then root=.; fi; exec \"$root/scripts/launch-near-context-mcp\""
+      ],
+      "cwd": "."
+    }
+  }
+}

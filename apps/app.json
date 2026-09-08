@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Near",
+    "slug": "near",
+    "version": "1.0.0",
+    "platforms": [
+      "ios"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.pedro.Near",
+      "buildNumber": "1",
+      "appleTeamId": "KC2ZK3BWH7",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "entitlements": {
+        "com.apple.developer.applesignin": [
+          "Default"
+        ]
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "40e313e2-c8b9-422a-b9e6-b8c826a34a80"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.artifacts/
+*.tsbuildinfo
+apps/web/vite.config.js
+apps/web/vite.config.d.ts
+.DS_Store
+
+# Private operator configuration and design exports
+.publication-local/
+AGENTS.local.md
+docs/design/claude-design/

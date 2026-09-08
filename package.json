@@ -1,0 +1,17 @@
+{
+  "name": "near",
+  "version": "0.8.3",
+  "private": true,
+  "description": "Near agent plugin and family interfaces.",
+  "homepage": "https://github.com/PedroAVJ/near",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroAVJ/near.git"
+  },
+  "scripts": {
+    "build": "npm --prefix apps/web run build && npm --prefix services/gateway run build",
+    "test": "npm --prefix services/gateway test && node --test tests/plugin-structure.test.mjs && PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py'",
+    "typecheck": "npm --prefix apps/web run typecheck && npm --prefix services/gateway run typecheck"
+  },
+  "license": "MIT"
+}

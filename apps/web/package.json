@@ -1,0 +1,25 @@
+{
+  "name": "@near/web",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run typecheck && vite build",
+    "dev": "vite",
+    "typecheck": "tsc --noEmit --pretty false -p tsconfig.json && tsc --noEmit --pretty false -p tsconfig.node.json"
+  },
+  "dependencies": {
+    "@sentry/react": "^10.71.0",
+    "lucide-react": "^1.34.0",
+    "posthog-js": "^1.421.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}

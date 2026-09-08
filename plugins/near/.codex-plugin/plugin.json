@@ -1,0 +1,45 @@
+{
+  "name": "near",
+  "version": "0.8.3",
+  "description": "Work with a user-chosen private Git-backed context repository.",
+  "author": {
+    "name": "PedroAVJ",
+    "url": "https://github.com/PedroAVJ"
+  },
+  "homepage": "https://github.com/PedroAVJ/near",
+  "repository": "https://github.com/PedroAVJ/near",
+  "license": "MIT",
+  "keywords": [
+    "near",
+    "exocortex",
+    "ideas",
+    "canon",
+    "career",
+    "health",
+    "records"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Near",
+    "shortDescription": "Your private Git-backed context",
+    "longDescription": "Read and deliberately update a user-chosen private context repository while preserving ownership, confidentiality, and attribution.",
+    "developerName": "PedroAVJ",
+    "category": "Health",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/PedroAVJ/near",
+    "defaultPrompt": [
+      "Use my configured Near context repository",
+      "Read relevant context without saving this conversation",
+      "Save the record I explicitly request in my chosen Near repository"
+    ],
+    "brandColor": "#9A5F3F",
+    "composerIcon": "./assets/near-icon.svg",
+    "logo": "./assets/near-icon.svg",
+    "screenshots": []
+  }
+}

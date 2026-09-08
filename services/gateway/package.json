@@ -1,0 +1,31 @@
+{
+  "name": "@near/gateway",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "start": "node --import ./dist/src/instrumentation.js dist/src/server.js",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "0.3.241",
+    "@google-cloud/firestore": "9.0.0",
+    "@hono/node-server": "1.19.17",
+    "@sentry/node": "10.42.0",
+    "hono": "4.13.3",
+    "jose": "6.1.0",
+    "zod": "4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "vitest": "3.2.7"
+  }
+}

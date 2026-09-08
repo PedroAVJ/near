@@ -1,0 +1,88 @@
+name: Near
+options:
+  createIntermediateGroups: true
+  developmentLanguage: en
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "26.5"
+configs:
+  Debug: debug
+  Release: release
+settings:
+  base:
+    DEVELOPMENT_TEAM: KC2ZK3BWH7
+    SWIFT_VERSION: 6.0
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+targets:
+  Near:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: Near
+        excludes:
+          - Info.plist
+          - Near.entitlements
+    entitlements:
+      path: Near/Near.entitlements
+      properties:
+        com.apple.developer.applesignin:
+          - Default
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pedro.Near
+        PRODUCT_NAME: Near
+        INFOPLIST_FILE: Near/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Near/Near.entitlements
+        CODE_SIGN_STYLE: Automatic
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+        NEAR_GATEWAY_URL: https://near-ios-gateway-234815354718.us-central1.run.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: 1
+        SUPPORTS_MACCATALYST: false
+        GENERATE_INFOPLIST_FILE: false
+      configs:
+        Debug:
+          CODE_SIGN_IDENTITY: Apple Development
+        Release:
+          CODE_SIGN_IDENTITY: Apple Distribution
+    attributes:
+      SystemCapabilities:
+        com.apple.SignInWithApple:
+          enabled: 1
+    scheme:
+      gatherCoverageData: true
+      testTargets:
+        - NearTests
+        - NearUITests
+  NearTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: NearTests
+    dependencies:
+      - target: Near
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pedro.NearTests
+        GENERATE_INFOPLIST_FILE: true
+        CODE_SIGNING_ALLOWED: false
+  NearUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: NearUITests
+    dependencies:
+      - target: Near
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pedro.NearUITests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: Near
+        CODE_SIGNING_ALLOWED: false
