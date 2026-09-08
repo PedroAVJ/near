@@ -1,6 +1,6 @@
 {
   "name": "near",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Work with a user-chosen private Git-backed context repository.",
   "author": {
     "name": "PedroAVJ",

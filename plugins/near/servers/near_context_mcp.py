@@ -15,7 +15,7 @@ from urllib.parse import quote
 
 
 
-SERVER_VERSION = "0.8.3"
+SERVER_VERSION = "0.8.4"
 ALLOWED_ROOTS = ("ideas/", "canon/", "context/", "career/", "docs/project/", "public/")
 ALLOWED_SUFFIXES = (".md", ".txt", ".json", ".yaml", ".yml")
 MAX_QUERY_LENGTH = 120

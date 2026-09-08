@@ -1,6 +1,6 @@
 {
   "name": "near",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Work with a user-chosen private Git-backed context repository.",
   "author": {
     "name": "PedroAVJ",
@@ -25,7 +25,7 @@
     "shortDescription": "Your private Git-backed context",
     "longDescription": "Read and deliberately update a user-chosen private context repository while preserving ownership, confidentiality, and attribution.",
     "developerName": "PedroAVJ",
-    "category": "Health",
+    "category": "Memory",
     "capabilities": [
       "Interactive",
       "Read",
