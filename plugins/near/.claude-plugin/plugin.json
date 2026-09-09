@@ -1,7 +1,7 @@
 {
   "name": "near",
-  "version": "0.8.4",
-  "description": "Work with a user-chosen private Git-backed context repository.",
+  "version": "0.9.0",
+  "description": "Read public profiles and work with your chosen private Git-backed context.",
   "author": {
     "name": "PedroAVJ",
     "url": "https://github.com/PedroAVJ"

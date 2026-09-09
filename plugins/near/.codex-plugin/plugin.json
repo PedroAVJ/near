@@ -1,7 +1,7 @@
 {
   "name": "near",
-  "version": "0.8.4",
-  "description": "Work with a user-chosen private Git-backed context repository.",
+  "version": "0.9.0",
+  "description": "Read public profiles and work with your chosen private Git-backed context.",
   "author": {
     "name": "PedroAVJ",
     "url": "https://github.com/PedroAVJ"
@@ -22,8 +22,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Near",
-    "shortDescription": "Your private Git-backed context",
-    "longDescription": "Read and deliberately update a user-chosen private context repository while preserving ownership, confidentiality, and attribution.",
+    "shortDescription": "Public profiles and your private context",
+    "longDescription": "Explore a person’s published profile through your agent, or use your own private context repository. Public reads never use or replace your private configuration.",
     "developerName": "PedroAVJ",
     "category": "Memory",
     "capabilities": [
@@ -33,6 +33,7 @@
     ],
     "websiteURL": "https://github.com/PedroAVJ/near",
     "defaultPrompt": [
+      "Read the public Near profile repository I provide and tell me about its owner",
       "Use my configured Near context repository",
       "Read relevant context without saving this conversation",
       "Save the record I explicitly request in my chosen Near repository"

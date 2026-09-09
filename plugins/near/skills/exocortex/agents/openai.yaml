@@ -1,4 +1,4 @@
 interface:
-  display_name: "Exocortex"
-  short_description: "Work with your chosen private context repository"
-  default_prompt: "Use $exocortex with my explicitly chosen repository and respect my filing preferences."
+  display_name: "Near"
+  short_description: "Read a public profile or your chosen private context"
+  default_prompt: "Use $exocortex with the public profile repository I supply, or my explicitly chosen private repository, preserving attribution and my filing preferences."

@@ -61,13 +61,14 @@ test("installable package stays thin and state-free", async () => {
   assert.ok(await treeSize(pluginRoot) < 256 * 1024, "Near plugin package must stay below 256 KiB");
 });
 
-test("plugin exposes only bounded read-only configured context tools", async () => {
+test("plugin exposes bounded read-only private context and public profile tools", async () => {
   const mcp = await readPluginJson(".mcp.json");
   const server = await readFile(resolve(pluginRoot, "servers/near_context_mcp.py"), "utf8");
 
   assert.deepEqual(Object.keys(mcp.mcpServers), ["near-context"]);
   assert.match(server, /search_context/);
   assert.match(server, /read_context/);
+  assert.match(server, /read_public_profile/);
   assert.match(server, /configured personal context/);
   assert.doesNotMatch(server, /create_context|update_context|delete_context/);
 });

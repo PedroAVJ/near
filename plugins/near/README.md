@@ -1,6 +1,42 @@
 # Near plugin
 
-A stateless router to a user-chosen private Git-backed context repository.
+A stateless router for public profiles and user-chosen private Git-backed context.
+
+## Read a public profile
+
+Install Near through Package Manager:
+
+```bash
+codex plugin marketplace add PedroAVJ/package-manager --ref main
+codex plugin add near@package-manager
+```
+
+Or in Claude Code:
+
+```bash
+claude plugin marketplace add PedroAVJ/package-manager
+claude plugin install near@package-manager
+```
+
+Open a fresh task and ask: **“Use Near to read the public profile at
+`owner/profile-repository`. Tell me about this person’s work and ideas, with
+sources.”** Supply the repository shared by that person. Follow-up questions stay
+with your agent; no message is sent to the profile owner.
+
+`read_public_profile(repository)` reads one deliberately published
+`public/profile.md` file, at most 32 KiB, from a public GitHub repository. It
+returns the full text and a commit-pinned source link. Python 3 with HTTPS support
+is required. It does not need GitHub sign-in, read or change your private Near
+configuration, store the conversation, or grant access to private records.
+GitHub's unauthenticated rate limits apply; retry later if requested.
+
+To publish a profile, author that file in a separate public repository. The
+repository owner controls publication. Keep reusable plugin code here and
+personal profile data in its own repository. Do not derive a public profile by
+automatically filtering a private repository. See the [public profile
+contract](skills/exocortex/SKILL.md#public-profiles).
+
+## Private context
 
 Set `NEAR_CONTEXT_REPO=owner/repository` in your MCP server environment.
 The repository default branch is resolved automatically. Without a configured

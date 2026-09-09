@@ -1,10 +1,21 @@
 # Near
 
-Near is an agent plugin and interface layer for private, Git-backed personal
+Near is an agent plugin for public profiles and private, Git-backed personal
 context repositories. Each person chooses and owns a separate repository. This
 repository contains reusable routing, client, and gateway code, never personal records.
 
-## Setup
+## Public profiles
+
+Install `near@package-manager` in Codex or Claude Code, then give your agent the
+public profile repository you want to explore. The `read_public_profile` tool
+reads a deliberately published `public/profile.md` through unauthenticated
+GitHub HTTPS and returns a commit-pinned source. No GitHub sign-in or private
+Near setup is needed. Your agent answers about the person with attribution;
+it does not become them or send them your conversation.
+
+See [installation and public profile instructions](plugins/near/README.md).
+
+## Private setup
 
 Install the plugin from `plugins/near/` in Codex or Claude Code. Set
 `NEAR_CONTEXT_REPO=owner/repository` in the MCP server environment to choose the
