@@ -15,12 +15,25 @@ between ideas, brainstorm, interpret retrieved context, or make a hard call,
 Near collaborates before answering. It is not a one-model persona and it is not
 a draft-then-critique loop.
 
-Before running the collaboration, read the installed `claude:claude` and
-`codex:sub-agents` skills completely. Resolve
-[references/fable-contract.json](references/fable-contract.json) relative to
-this skill and use it as Fable's exact runtime contract. Read
-[references/near-voice.md](references/near-voice.md) completely before the
-final synthesis.
+Before every collaboration, run
+`python3 <loaded-near-skill-dir>/scripts/load_live_contract.py`. Treat the JSON
+it returns as Near's current behavioral contract for this invocation: follow its
+complete `skill`, use `fable_contract` as Fable's exact runtime contract, and use
+`near_voice` for the final synthesis. The returned copy's bootstrap step is
+already satisfied for this invocation; do not invoke it recursively. The
+bootstrap deliberately resolves the newest valid Near release installed for the
+active client, so an existing thread can adopt updated reasoning, voice, and
+collaboration instructions. Do not use an older in-context copy when the
+bootstrap returns a newer `version` or changed `contract_sha256`. If the
+bootstrap fails validation, stop and report the error instead of silently mixing
+contracts.
+
+Then read the installed `claude:claude` and `codex:sub-agents` skills completely.
+Reuse an existing Fable or Astra participant session when the host exposes one;
+refresh its instructions from this invocation's live contract rather than
+resetting the conversation. A host still needs its native refresh or a fresh
+task for changed skill names, trigger metadata, tools, or plugin wiring—the
+bootstrap refreshes Near's behavioral contract, not the host registry.
 
 1. Read only the relevant Near context first, following the source and privacy
    boundaries below. Give both models the exact user question and the same

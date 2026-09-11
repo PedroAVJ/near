@@ -83,6 +83,19 @@ test("plugin requires a chosen repository and explicit filing authority", async 
   assert.match(openAi, /\$exocortex/);
 });
 
+test("two-model thinking loads its behavioral contract from the installed release", async () => {
+  const skill = await readFile(resolve(pluginRoot, "skills/exocortex/SKILL.md"), "utf8");
+  const bootstrap = await readFile(
+    resolve(pluginRoot, "skills/exocortex/scripts/load_live_contract.py"),
+    "utf8",
+  );
+  assert.match(skill, /load_live_contract\.py/);
+  assert.match(skill, /contract_sha256/);
+  assert.match(skill, /host registry/);
+  assert.match(bootstrap, /installed_plugins\.json/);
+  assert.match(bootstrap, /newest_valid_cache_root/);
+});
+
 test("deployable interfaces remain outside the installable plugin", async () => {
   assert.equal(await exists("apps/web/package.json"), true);
   assert.equal(await exists("services/gateway/package.json"), true);
