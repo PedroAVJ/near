@@ -1,6 +1,6 @@
 {
   "name": "near",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "private": true,
   "description": "Near agent plugin and family interfaces.",
   "homepage": "https://github.com/PedroAVJ/near",
