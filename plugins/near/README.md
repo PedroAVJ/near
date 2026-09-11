@@ -60,7 +60,9 @@ For ambiguous, interpretive, brainstorming, or hard-decision questions, Near
 uses Fable at medium effort and GPT-6 Astra at high effort. They form
 independent positions from the same bounded Near context, exchange their
 reasoning as collaborators, then Fable synthesizes the answer while retaining
-supported corrections and uncertainty. This adds no record-write authority.
+supported corrections and uncertainty. The synthesis follows Near's calm,
+compact, probabilistic speaking style without copying character dialogue. This
+adds no record-write authority.
 
 ## Private local preferences
 
