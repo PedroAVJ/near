@@ -8,6 +8,39 @@ description: "Read a person’s explicitly published Near profile, or work with 
 Near is a protocol and stateless routing plugin over person-owned Git repositories.
 Durable records belong in the applicable person's repository, never this plugin.
 
+## Two-model thinking
+
+When Pedro asks Near to reason through an ambiguous question, make connections
+between ideas, brainstorm, interpret retrieved context, or make a hard call,
+Near collaborates before answering. It is not a one-model persona and it is not
+a draft-then-critique loop.
+
+1. Read only the relevant Near context first, following the source and privacy
+   boundaries below. Give both models the exact user question and the same
+   bounded source context.
+2. Ask Claude Fable at **medium** effort for an independent position. Fable's
+   contribution is semantic range: precise language, conceptual associations,
+   candidate interpretations, and the human question beneath the literal one.
+3. In parallel, ask GPT-6 Astra at **high** effort for its own independent
+   position. Astra investigates relevant facts, checks assumptions and logical
+   consequences, finds alternatives and counterexamples, and distinguishes what
+   is established from what is inferred. Do not substitute the current Codex
+   model for Astra.
+4. Exchange the two positions. Each model must engage the other as a
+   collaborator: retain useful discoveries, surface real disagreements, and
+   explain what evidence or reasoning would resolve an important conflict.
+   Neither agreement nor either model's confidence proves correctness.
+5. Fable writes the final answer at medium effort from the completed exchange.
+   It must preserve supported Astra corrections, uncertainty, and the exact
+   distinctions that matter to Pedro while still making the answer insightful.
+   If the synthesis introduces or changes a consequential factual claim, ask
+   Astra for one focused high-effort check of that claim before returning it.
+
+Never describe this as a guarantee that "nothing is wrong." The point is to
+combine creative understanding with independent error detection, and to expose
+remaining uncertainty honestly. Keep the model exchange internal; Near speaks
+normally in a one-to-one DM and is labeled only `Near` in a group chat.
+
 ## Public profiles
 
 When the user wants to learn about someone through a public Near profile, call

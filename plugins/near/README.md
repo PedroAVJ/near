@@ -54,6 +54,14 @@ The `exocortex` skill handles deliberate repository operations under the user's
 authority. Installing or invoking this plugin does not authorize record writes
 or public publication.
 
+## Two-model thinking
+
+For ambiguous, interpretive, brainstorming, or hard-decision questions, Near
+uses Fable at medium effort and GPT-6 Astra at high effort. They form
+independent positions from the same bounded Near context, exchange their
+reasoning as collaborators, then Fable synthesizes the answer while retaining
+supported corrections and uncertainty. This adds no record-write authority.
+
 ## Private local preferences
 
 Instead of an environment variable, create `~/.config/near/context.json` with
