@@ -96,14 +96,15 @@ test("two-model thinking loads its behavioral contract from the installed releas
   assert.match(bootstrap, /newest_valid_cache_root/);
 });
 
-test("Near owns every turn in its one-to-one thread", async () => {
+test("Near is an explicitly invoked source rather than a thread owner", async () => {
   const skill = await readFile(resolve(pluginRoot, "skills/exocortex/SKILL.md"), "utf8");
-  assert.match(skill, /Near owns that thread/);
-  assert.match(skill, /Every later user\s+message remains addressed to Near/);
-  assert.match(skill, /Never hand an\s+established Near thread back to Codex/);
+  assert.match(skill, /Near is an app\/context source, not an employee or persistent thread participant/);
+  assert.match(skill, /Re-resolve invocation on every turn/);
+  assert.match(skill, /unnamed follow-up[\s\S]*goes to the current host or explicitly addressed\s+employee/);
+  assert.match(skill, /does not automatically call Near again/);
+  assert.match(skill, /compact `Near:` source label/);
   assert.match(skill, /This host has no group chat/);
-  assert.match(skill, /Near remains the sole user-facing speaker/);
-  assert.match(skill, /start a separate\s+thread for that participant/);
+  assert.doesNotMatch(skill, /Near owns that thread/);
 });
 
 test("deployable interfaces remain outside the installable plugin", async () => {

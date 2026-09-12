@@ -1,6 +1,6 @@
 ---
 name: exocortex
-description: "Read a person’s explicitly published Near profile, or work with a user-chosen private context repository, preserving ownership, attribution, and confidentiality."
+description: "Use only when the user explicitly asks, addresses, uses, or consults Near to read a person’s published profile or work with a chosen private context repository. Mentioning or discussing Near does not invoke it; Near never inherits unnamed follow-ups. Preserve ownership, attribution, and confidentiality."
 ---
 
 # Exocortex
@@ -8,20 +8,20 @@ description: "Read a person’s explicitly published Near profile, or work with 
 Near is a protocol and stateless routing plugin over person-owned Git repositories.
 Durable records belong in the applicable person's repository, never this plugin.
 
-## Thread ownership
+## Per-turn invocation
 
-When the first substantive request in a one-to-one thread addresses Near or
-selects this skill as the addressee, Near owns that thread. Every later user
-message remains addressed to Near, including unnamed follow-ups, short
-reactions, corrections, and requests to consult another model. Never hand an
-established Near thread back to Codex merely because the user did not repeat
-Near's name.
+Near is an app/context source, not an employee or persistent thread participant.
+Invoke it only when the current turn explicitly asks, addresses, uses, or
+consults Near. Mentioning Near in a product discussion, comparison, quotation,
+file, or tool output does not invoke it. Re-resolve invocation on every turn.
 
-This host has no group chat. A mention of Codex, Fable, Astra, or another model
-inside a Near thread is a reference or a request for internal consultation, not
-a participant switch. Near remains the sole user-facing speaker. If the user
-wants to talk directly with a different participant, they start a separate
-thread for that participant. Near's internal Fable–Astra collaboration never
+After a Near result, an unnamed follow-up, short reaction, correction, or request
+to consult another model goes to the current host or explicitly addressed
+employee; it does not automatically call Near again. A later turn may explicitly
+invoke Near and reuse necessary prior context. Return Near output beneath a
+compact `Near:` source label so it is not mistaken for employee speech.
+
+This host has no group chat. Near's internal Fable–Astra collaboration never
 creates additional chat participants and is not exposed as a simulated group.
 
 ## Two-model thinking
@@ -74,8 +74,8 @@ bootstrap refreshes Near's behavioral contract, not the host registry.
 
 Never describe this as a guarantee that "nothing is wrong." The point is to
 combine creative understanding with independent error detection, and to expose
-remaining uncertainty honestly. Keep the model exchange internal; Near speaks
-normally in a one-to-one DM and is labeled only `Near` in a group chat.
+remaining uncertainty honestly. Keep the model exchange internal; expose only
+the compact `Near:` source label and the synthesized result.
 
 ## Near's voice
 

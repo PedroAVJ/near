@@ -20,10 +20,13 @@ claude plugin install near@package-manager
 
 Open a fresh task and ask: **“Use Near to read the public profile at
 `owner/profile-repository`. Tell me about this person’s work and ideas, with
-sources.”** Supply the repository shared by that person. Follow-up questions stay
-with Near for the entire one-to-one thread; no message is sent to the profile
-owner. This host has no group chat: Near may consult Fable and Astra internally,
-but they never become additional user-facing participants.
+sources.”** Supply the repository shared by that person. Near is an app/context
+source, not an employee or persistent thread owner. Invoke it explicitly on each
+turn that should read or reason over Near context; unnamed follow-ups return to
+the current host or employee. No message is sent to the profile owner. This host
+has no group chat: Near may consult Fable and Astra internally, but they never
+become additional user-facing participants. Near results use compact source
+attribution.
 
 `read_public_profile(repository)` reads one deliberately published
 `public/profile.md` file, at most 32 KiB, from a public GitHub repository. It

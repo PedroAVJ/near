@@ -20,9 +20,12 @@ telemetry, a model log, or another person's repository.
   materializes only task-relevant paths.
 - Keep the Codex and Claude manifests aligned. Validate the plugin after every
   package change.
-- A one-to-one Near thread has one participant: Near owns every follow-up after
-  the first substantive request selects it. The host has no group chat; internal
-  Fable–Astra collaboration must never appear as additional chat participants.
+- Near is an app/context source, not an employee or persistent thread owner.
+  Invoke it only for a turn that explicitly asks, addresses, uses, or consults
+  Near; mentioning it or discussing the product does not invoke it. Unnamed
+  follow-ups stay with the current host or employee. Return Near output with
+  compact source attribution. The host has no group chat; internal Fable–Astra
+  collaboration must never appear as additional chat participants.
 
 ## Web interface and gateway
 
