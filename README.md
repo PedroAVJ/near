@@ -23,9 +23,10 @@ repository used for bounded read-only context. There is no default account or
 repository. The GitHub CLI must be authenticated with read access. The repository default branch
 is resolved automatically. Keep these settings in your client configuration outside Git.
 
-The plugin's `search_context` and `read_context` tools read only documented context
-roots. Invoking Near alone does not authorize saving or publishing a conversation;
-follow the user's explicit request and chosen repository's instructions.
+The plugin's `search_context` and `read_context` tools read only documented or
+locally configured context roots. Invoking Near alone does not authorize saving
+or publishing a conversation; follow the user's explicit request and chosen
+repository's instructions.
 
 ## Applications
 
@@ -42,7 +43,9 @@ your own deployment variables and secrets before enabling the deployment workflo
 ## Private local preferences
 
 Instead of an environment variable, create `~/.config/near/context.json` with
-`{"repository":"owner/repository"}` and restrict it to mode `0600`.
+`{"repository":"owner/repository"}` and restrict it to mode `0600`. A local
+`additional_read_roots` array may grant narrowly scoped MCP reads outside the
+defaults; it never grants writes or sharing.
 `NEAR_CONTEXT_CONFIG` may select another local config file; `NEAR_CONTEXT_REPO`
 takes precedence. The plugin never creates or overwrites this file.
 

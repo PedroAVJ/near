@@ -21,11 +21,13 @@ telemetry, a model log, or another person's repository.
 - Keep the Codex and Claude manifests aligned. Validate the plugin after every
   package change.
 - Near is an app/context source, not an employee or persistent thread owner.
-  Invoke it only for a turn that explicitly asks, addresses, uses, or consults
-  Near; mentioning it or discussing the product does not invoke it. Unnamed
-  follow-ups stay with the current host or employee. Return Near output with
-  compact source attribution. The host has no group chat; internal Fable–Astra
-  collaboration must never appear as additional chat participants.
+  Invoke it for a turn that explicitly asks, addresses, uses, or consults Near,
+  or when a configured employee's approved program contract authorizes a
+  relevant internal Near lookup. A mere mention or product discussion does not
+  invoke it. Unnamed follow-ups stay with the current host or employee. Return
+  Near output with compact source attribution. The host has no group chat;
+  internal Fable–Astra collaboration must never appear as additional chat
+  participants.
 
 ## Web interface and gateway
 

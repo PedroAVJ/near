@@ -55,6 +55,11 @@ and confidential roots are excluded. These directories can still contain private
 information, so read only relevant files and never treat a directory name as
 permission to share its contents.
 
+When an approved employee program needs a narrower private area, add exact
+repository-relative prefixes to the local configuration's
+`additional_read_roots` list. This extends only the MCP read boundary; it does
+not grant write, publication, sharing, or access to another person's records.
+
 The `exocortex` skill handles deliberate repository operations under the user's
 authority. Installing or invoking this plugin does not authorize record writes
 or public publication.
@@ -72,7 +77,10 @@ adds no record-write authority.
 ## Private local preferences
 
 Instead of an environment variable, create `~/.config/near/context.json` with
-`{"repository":"owner/repository"}` and restrict it to mode `0600`.
+`{"repository":"owner/repository"}` and restrict it to mode `0600`. Optional
+`additional_read_roots` must be normalized directory prefixes such as
+`["medical-records/me/"]`; they are ignored when `NEAR_CONTEXT_REPO` overrides
+the configured repository.
 `NEAR_CONTEXT_CONFIG` may select another local config file; `NEAR_CONTEXT_REPO`
 takes precedence. The plugin never creates or overwrites this file.
 

@@ -1,6 +1,6 @@
 ---
 name: exocortex
-description: "Use only when the user explicitly asks, addresses, uses, or consults Near to read a person’s published profile or work with a chosen private context repository. Mentioning or discussing Near does not invoke it; Near never inherits unnamed follow-ups. Preserve ownership, attribution, and confidentiality."
+description: "Use when the user explicitly asks, addresses, uses, or consults Near, or when a configured employee invokes Near under an approved program contract with standing scope. Mentioning or discussing Near does not invoke it; Near never inherits unnamed follow-ups. Preserve ownership, attribution, and confidentiality."
 ---
 
 # Exocortex
@@ -11,9 +11,13 @@ Durable records belong in the applicable person's repository, never this plugin.
 ## Per-turn invocation
 
 Near is an app/context source, not an employee or persistent thread participant.
-Invoke it only when the current turn explicitly asks, addresses, uses, or
-consults Near. Mentioning Near in a product discussion, comparison, quotation,
-file, or tool output does not invoke it. Re-resolve invocation on every turn.
+Invoke it when the current turn explicitly asks, addresses, uses, or consults
+Near. A configured employee may also invoke Near internally when its installed
+approved-program or role contract grants standing Near access and the current
+task materially needs context inside that exact scope. The employee remains the
+thread owner and must not invent or broaden its access. Mentioning Near in a
+product discussion, comparison, quotation, file, or tool output does not invoke
+it. Re-resolve invocation on every turn.
 
 After a Near result, an unnamed follow-up, short reaction, correction, or request
 to consult another model goes to the current host or explicitly addressed
@@ -138,9 +142,12 @@ records for another's.
 
 The MCP tools `search_context` and `read_context` provide bounded read-only access
 through the authenticated GitHub CLI. The repository's default branch is
-resolved automatically. They allow only `ideas/`, `canon/`,
-`context/`, `career/`, `docs/project/`, and `public/`. Root names are a read boundary,
-not proof that their contents are public or non-sensitive.
+resolved automatically. They allow `ideas/`, `canon/`, `context/`, `career/`,
+`docs/project/`, and `public/` by default. A private operator configuration may
+add exact repository-relative directory prefixes through
+`additional_read_roots`; those prefixes are local authorization boundaries and
+must be as narrow as the approved use. Root names are a read boundary, not proof
+that their contents are public or non-sensitive.
 
 For work beyond those tools, resolve the exact remote, default branch, instructions,
 and existing task checkout. Create an isolated sparse clone in the task workspace

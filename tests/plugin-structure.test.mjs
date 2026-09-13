@@ -96,10 +96,12 @@ test("two-model thinking loads its behavioral contract from the installed releas
   assert.match(bootstrap, /newest_valid_cache_root/);
 });
 
-test("Near is an explicitly invoked source rather than a thread owner", async () => {
+test("Near is an explicit or approved-program source rather than a thread owner", async () => {
   const skill = await readFile(resolve(pluginRoot, "skills/exocortex/SKILL.md"), "utf8");
   assert.match(skill, /Near is an app\/context source, not an employee or persistent thread participant/);
   assert.match(skill, /Re-resolve invocation on every turn/);
+  assert.match(skill, /approved-program or role contract grants standing Near access/);
+  assert.match(skill, /employee remains the\s+thread owner/);
   assert.match(skill, /unnamed follow-up[\s\S]*goes to the current host or explicitly addressed\s+employee/);
   assert.match(skill, /does not automatically call Near again/);
   assert.match(skill, /compact `Near:` source label/);

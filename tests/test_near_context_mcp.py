@@ -53,6 +53,51 @@ class NearContextMcpTests(unittest.TestCase):
                 with mock.patch.dict("os.environ", {"NEAR_CONTEXT_REPO": "other-owner/explicit-context"}):
                     self.assertEqual("other-owner/explicit-context", self.server._repository())
 
+    def test_private_configuration_adds_only_exact_read_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            config = Path(directory) / "context.json"
+            config.write_text(json.dumps({
+                "repository": "example-owner/local-context",
+                "additional_read_roots": ["medical-records/me/", "relationship-records/"],
+            }))
+            with mock.patch.dict("os.environ", {"NEAR_CONTEXT_CONFIG": str(config)}, clear=True):
+                self.assertEqual(
+                    "medical-records/me/summary.md",
+                    self.server._normalize_path("medical-records/me/summary.md"),
+                )
+                self.assertEqual(
+                    "relationship-records/couple.md",
+                    self.server._normalize_path("relationship-records/couple.md"),
+                )
+                with self.assertRaises(self.server.NearContextError):
+                    self.server._normalize_path("medical-records/other/summary.md")
+
+    def test_repository_environment_override_does_not_inherit_configured_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            config = Path(directory) / "context.json"
+            config.write_text(json.dumps({
+                "repository": "example-owner/local-context",
+                "additional_read_roots": ["medical-records/me/"],
+            }))
+            with mock.patch.dict("os.environ", {
+                "NEAR_CONTEXT_CONFIG": str(config),
+                "NEAR_CONTEXT_REPO": "other-owner/explicit-context",
+            }, clear=True):
+                with self.assertRaises(self.server.NearContextError):
+                    self.server._normalize_path("medical-records/me/summary.md")
+
+    def test_invalid_additional_read_roots_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            config = Path(directory) / "context.json"
+            for roots in ("medical-records/me/", ["../medical-records/me/"], [""]):
+                config.write_text(json.dumps({
+                    "repository": "example-owner/local-context",
+                    "additional_read_roots": roots,
+                }))
+                with mock.patch.dict("os.environ", {"NEAR_CONTEXT_CONFIG": str(config)}, clear=True):
+                    with self.assertRaises(self.server.NearContextError):
+                        self.server._normalize_path("ideas/sample-idea.md")
+
     def test_scope_allows_context_and_rejects_sensitive_or_traversal_paths(self) -> None:
         self.assertEqual(
             "ideas/sample-idea.md",

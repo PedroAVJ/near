@@ -19,9 +19,10 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
 
-SERVER_VERSION = "0.9.0"
-ALLOWED_ROOTS = ("ideas/", "canon/", "context/", "career/", "docs/project/", "public/")
+SERVER_VERSION = "0.10.5"
+DEFAULT_ALLOWED_ROOTS = ("ideas/", "canon/", "context/", "career/", "docs/project/", "public/")
 ALLOWED_SUFFIXES = (".md", ".txt", ".json", ".yaml", ".yml")
+MAX_ADDITIONAL_ROOTS = 16
 MAX_QUERY_LENGTH = 120
 MAX_RESULTS = 8
 MAX_LINES = 120
@@ -35,21 +36,54 @@ class NearContextError(RuntimeError):
     """The bounded Near context operation could not be completed."""
 
 
+def _configuration() -> dict[str, Any]:
+    configured_path = os.environ.get("NEAR_CONTEXT_CONFIG")
+    config_path = (pathlib.Path(configured_path).expanduser() if configured_path
+                   else pathlib.Path.home() / ".config" / "near" / "context.json")
+    if not config_path.exists():
+        return {}
+    try:
+        payload = json.loads(config_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise NearContextError("The local Near context configuration could not be read") from error
+    if not isinstance(payload, dict):
+        raise NearContextError("The local Near context configuration must be an object")
+    return payload
+
+
 def _repository() -> str:
     value = os.environ.get("NEAR_CONTEXT_REPO", "").strip()
     if not value:
-        configured_path = os.environ.get("NEAR_CONTEXT_CONFIG")
-        config_path = (pathlib.Path(configured_path).expanduser() if configured_path
-                       else pathlib.Path.home() / ".config" / "near" / "context.json")
-        if config_path.exists():
-            try:
-                payload = json.loads(config_path.read_text(encoding="utf-8"))
-                value = payload.get("repository", "") if isinstance(payload, dict) else ""
-            except (OSError, json.JSONDecodeError) as error:
-                raise NearContextError("The local Near context configuration could not be read") from error
+        value = _configuration().get("repository", "")
     if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9_.-]+", value):
         raise NearContextError("Set NEAR_CONTEXT_REPO or configure your chosen repository in ~/.config/near/context.json before reading context")
     return value
+
+
+def _allowed_roots() -> tuple[str, ...]:
+    # A repository selected by environment must not inherit privileges from a
+    # different repository's local config.
+    if os.environ.get("NEAR_CONTEXT_REPO", "").strip():
+        return DEFAULT_ALLOWED_ROOTS
+    roots = _configuration().get("additional_read_roots", [])
+    if roots is None:
+        roots = []
+    if not isinstance(roots, list) or len(roots) > MAX_ADDITIONAL_ROOTS:
+        raise NearContextError(
+            f"additional_read_roots must be a list of at most {MAX_ADDITIONAL_ROOTS} directories"
+        )
+    normalized: list[str] = list(DEFAULT_ALLOWED_ROOTS)
+    for value in roots:
+        if not isinstance(value, str) or not value.strip():
+            raise NearContextError("additional_read_roots entries must be nonempty strings")
+        candidate = value.strip().replace("\\", "/").rstrip("/")
+        pure = pathlib.PurePosixPath(candidate)
+        if pure.is_absolute() or ".." in pure.parts or candidate != pure.as_posix() or candidate in ("", "."):
+            raise NearContextError("additional_read_roots entries must be normalized repository-relative directories")
+        root = candidate + "/"
+        if root not in normalized:
+            normalized.append(root)
+    return tuple(normalized)
 
 
 def _ref() -> str:
@@ -106,7 +140,7 @@ def _normalize_path(value: Any) -> str:
     pure = pathlib.PurePosixPath(candidate)
     if pure.is_absolute() or ".." in pure.parts or candidate != pure.as_posix():
         raise NearContextError("path must be a normalized repository-relative path")
-    if not candidate.startswith(ALLOWED_ROOTS) or not candidate.lower().endswith(ALLOWED_SUFFIXES):
+    if not candidate.startswith(_allowed_roots()) or not candidate.lower().endswith(ALLOWED_SUFFIXES):
         raise NearContextError(
             "path is outside the configured Near context roots"
         )
